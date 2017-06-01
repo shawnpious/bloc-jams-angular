@@ -1,13 +1,12 @@
 (function () {
-        function SongPlayer(Fixtures) {
-            var SongPlayer = {};
-            var currentAlbum = Fixtures.getAlbum();
-            var getSongIndex = function (song) {
-                return currentAlbum.songs.indexOf(song);
-            };
-            SongPlayer.currentSong = null;
-
+    function SongPlayer(Fixtures) {
+        var SongPlayer = {};
+        var currentAlbum = Fixtures.getAlbum();
+        var getSongIndex = function (song) {
+            return currentAlbum.songs.indexOf(song);
         };
+        SongPlayer.currentSong = null;
+
         var getSongIndex = function (song) {
             return currentAlbum.songs.indexOf(song);
         };
@@ -55,28 +54,39 @@
             currentBuzzObject.pause();
             song.playing = false;
         };
-    
-    SongPlayer.previous = function() {
-     var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-     currentSongIndex--;
-     if (currentSongIndex < 0) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
-     } else {
-         var song = currentAlbum.songs[currentSongIndex];
-         setSong(song);
-         playSong(song);
-     }
-    
-    };
 
+        SongPlayer.previous = function () {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex--;
+            if (currentSongIndex < 0) {
+                currentBuzzObject.stop();
+                SongPlayer.currentSong.playing = null;
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
 
+        };
+
+        SongPlayer.next = function () {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
+            if (currentSongIndex < 0) {
+                currentBuzzObject.stop();
+                SongPlayer.currentSong.playing = null;
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+
+        };
 
         return SongPlayer;
     }
 
-
     angular
-    .module('blocJams')
-    .factory('SongPlayer', ['Fixtures', SongPlayer]);
+        .module('blocJams')
+        .factory('SongPlayer', ['Fixtures', SongPlayer]);
 })();

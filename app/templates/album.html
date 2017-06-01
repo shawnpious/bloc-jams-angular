@@ -6,13 +6,14 @@
         <div class="album-view-details column half">
             <h2 class="album-view-title">{{ album.albumData.name }}</h2>
             <h3 class="album-view-artist">{{ album.albumData.artist }}</h3>
-            <h5 class="album-view-release-info">{{ album.albumData.year }} {{ album.albumData.label}}</h5>
+            <h5 class="album-view-release-info">{{ album.albumData.year }} {{ album.albumData.label }}</h5>
         </div>
     </section>
     <table class="album-view-song-list">
         <tr class="album-view-song-item" ng-repeat="song in album.albumData.songs">
-            <td class="song-item-number"><span ng-show="!song.playing && !hovered">{{$index + 1}}</span>
-                <a class="album-song-button" ng-show="hovered && song.playing" ng-click="album.songPlayer.play(song)"><span class="ion-play"></span></a>
+            <td class="song-item-number">
+                <span ng-show="!song.playing && !hovered">{{$index + 1}}</span>
+                <a class="album-song-button" ng-show="!song.playing && hovered" ng-click="album.songPlayer.play(song)"><span class="ion-play"></span></a>
                 <a class="album-song-button" ng-show="song.playing" ng-click="album.songPlayer.pause(song)"><span class="ion-pause"></span></a>
             </td>
             <td class="song-item-title">{{ song.title }}</td>
@@ -20,18 +21,5 @@
         </tr>
     </table>
 </main>
+
 <ng-include src="'/templates/player_bar.html'"></ng-include>
-
-
-
-
-<!--
-
-
-<td class="album-view-song-item" ng-repeat="songs in albums" ng-mouseover="hovered = true" ng-mouseleave="hovered = false">
-     <span ng-show="!playing && !hovered">1</span>
-     <a class="album-song-button" ng-show="!playing && hovered">{{album.songs}}<span class="ion-play"></span></a>
-     <a class="album-song-button" ng-show="playing"><span class="ion-pause"></span></a>
- </td>
- <ng-include src="'/templates/player_bar.html'"></ng-include>
--->
