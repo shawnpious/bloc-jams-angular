@@ -59,8 +59,7 @@
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
             currentSongIndex--;
             if (currentSongIndex < 0) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                SongPlayer.stop
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
@@ -73,8 +72,7 @@
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
             currentSongIndex++;
             if (currentSongIndex < 0) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                SongPlayer.stop
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
@@ -82,6 +80,12 @@
             }
 
         };
+
+        SongPlayer.stop = function () {
+            currentBuzzObject.stop();
+            song.playing = null;
+
+        }
 
         return SongPlayer;
     }
