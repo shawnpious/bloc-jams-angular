@@ -5,26 +5,22 @@
                 <span class="ion-skip-backward"></span>
             </a>
             <a class="play-pause">
-                 <span class="ion-play"
-           ng-show="!playerBar.songPlayer.currentSong.playing"
-           ng-click="playerBar.songPlayer.play(playerBar.songPlayer.currentSong)">
+                <span class="ion-play" ng-show="!playerBar.songPlayer.currentSong.playing" ng-click="playerBar.songPlayer.play(playerBar.songPlayer.currentSong)">
      </span>
-     <span class="ion-pause"
-           ng-show="playerBar.songPlayer.currentSong.playing"
-           ng-click="playerBar.songPlayer.pause()">
+                <span class="ion-pause" ng-show="playerBar.songPlayer.currentSong.playing" ng-click="playerBar.songPlayer.pause()">
      </span>
-            <a class="previous" ng-click="playerBar.songPlayer.next()">
-                <span class="ion-skip-forward"></span>
-            </a>
+                <a class="previous" ng-click="playerBar.songPlayer.next()">
+                    <span class="ion-skip-forward"></span>
+                </a>
         </div>
         <div class="control-group currently-playing">
             <h2 class="song-name"></h2>
             <h2 class="artist-song-mobile"></h2>
             <h3 class="artist-name"></h3>
             <div class="seek-control">
-                 <seek-bar></seek-bar>
+                <seek-bar value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.duration }}" on-change="playerBar.songPlayer.setCurrentTime(value)"></seek-bar>
 
-                <div class="current-time"></div>`
+                <div class="current-time" value="{{ playerBar.songPlayer.currentTime }}"></div>`
                 <div class="total-time"></div>
             </div>
         </div>
