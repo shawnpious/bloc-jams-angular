@@ -34,6 +34,12 @@
                 formats: ['mp3'],
                 preload: true
             });
+            currentBuzzObject.bind('timeupdate', function () {
+                $rootScope.$apply(function () {
+                    SongPlayer.currentTime = currentBuzzObject.getTime();
+                });
+            });
+
 
             SongPlayer.currentSong = song;
         };
@@ -47,7 +53,7 @@
             currentBuzzObject.play();
             song.playing = true;
 
-            
+
         };
         SongPlayer.pause = function (song) {
             song = song || SongPlayer.currentSong;
@@ -63,7 +69,7 @@
                 SongPlayer.stop(SongPlayer.currentSong)
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
-                
+
                 setSong(song);
                 SongPlayer.play(song);
             }
